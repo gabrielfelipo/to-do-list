@@ -19,7 +19,7 @@ model Task {
   description String?   @db.VarChar(140)
   finalized   Boolean   @default(false)
   endDate     DateTime?
-  priority    String    @default("Baixa") @db.VarChar(5)
+  priority    Priority  @default(Baixa)
   memberId    Int
   member      Member    @relation(fields: [memberId], references: [id])
 
@@ -32,4 +32,10 @@ model Member {
   name     String @db.VarChar(50)
   password String @db.VarChar(50)
   tasks    Task[]
+}
+
+enum Priority {
+  Baixa
+  Media
+  Alta
 }
