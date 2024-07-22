@@ -19,7 +19,8 @@ export class TaskMapper {
         priority: raw.priority,
         memberId: raw.memberId,
         member: raw.member ? MemberMapper.toDomain(raw.member) : undefined,
-        finalized: false
+        finalized: raw.finalized,
+        endDate: raw.endDate
     }, 
     raw.id)
   }
