@@ -14,24 +14,26 @@ datasource db {
 }
 
 model Task {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(uuid())
   name        String    @db.VarChar(50)
   description String?   @db.VarChar(140)
   finalized   Boolean   @default(false)
   endDate     DateTime?
   priority    Priority  @default(Baixa)
-  memberId    Int
-  member      Member    @relation(fields: [memberId], references: [id])
+  memberId    String
+  member      Member    @relation(fields: [memberId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  @@index([memberId])
+  @@map("tasks")
 }
 
 model Member {
-  id       Int    @id @default(autoincrement())
+  id       String @id @default(uuid())
   email    String @unique
   name     String @db.VarChar(50)
-  password String @db.VarChar(50)
+  password String
   tasks    Task[]
+
+  @@map("members")
 }
 
 enum Priority {
