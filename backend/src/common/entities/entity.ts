@@ -9,10 +9,7 @@ export abstract class Entity<T> {
   }
 
   constructor(props: T, id?: string) {
-    console.log('random ')
-    console.log('teste ', crypto.randomUUID())
     this._id = id || crypto.randomUUID()
-    console.log('pos ', id)
 
     this.props = props
   }

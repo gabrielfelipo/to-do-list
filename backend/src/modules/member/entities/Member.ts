@@ -39,7 +39,6 @@ export class Member extends Entity<MemberProps> {
   }
 
   static create(props: MemberProps, id?: string) {
-    console.log(id)
     const member = new Member(props, id)
 
     return member

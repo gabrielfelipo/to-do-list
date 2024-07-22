@@ -15,16 +15,12 @@ export class CreateMemberUseCase implements IUseCase {
   constructor(private memberRepository: MemberRepository) {}
 
   async execute(payload: CreateMemberDto): CreateMemberResponse {
-    console.log('teste')
 
     const member = Member.create({
       name: payload.name,
       email: payload.email,
       password: await bcrypt.hash(payload.password, 10),
     })
-    console.log('teste')
-
-    console.log('teste')
 
     await this.memberRepository.create(member)
 
