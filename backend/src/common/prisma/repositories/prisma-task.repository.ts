@@ -40,7 +40,7 @@ export class PrismaTaskRepository extends TaskRepository{
     return TaskMapper.toDomain(task)
   }
 
-  async update(task: SetRequired<Except<Partial<Task>, 'member'>, 'id' | 'memberId'>): Promise<Task> {
+  async update(task: SetRequired<Except<Partial<Task>, 'member'>, 'id'>): Promise<Task> {
     const newTask = await this.prisma.task.update({
         where: { id: task.id },
         data: {...task}
