@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 
 async function main() {
   const members = await prisma.member.findMany();
-  console.log(members);
 }
 
 main()
