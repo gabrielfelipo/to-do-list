@@ -1,1 +1,0 @@
-{"version":3,"file":"limit-reached-error.js","sourceRoot":"","sources":["../../../../src/common/errors/limit-reached-error.ts"],"names":[],"mappings":";;;AAAA,wBAA2C;AAE3C,MAAa,iBAAiB;IAK5B,YAAY,OAAe;QAJ3B,UAAK,GAAG,oBAAoB,CAAA;QAC5B,SAAI,GAAG,aAAU,CAAC,mBAAmB,CAAA;QAInC,IAAI,CAAC,QAAQ,GAAG,EAAE,OAAO,EAAE,CAAA;IAC7B,CAAC;CACF;AARD,8CAQC"}
