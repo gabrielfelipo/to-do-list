@@ -57,8 +57,8 @@ export class Task extends Entity<TaskProps> {
   }
 
   static create(props: TaskProps, id?: string) {
-    const task = new Task(props, id);
+    const task = new Task(props, id)
 
-    return task;
+    return task
   }
 }
