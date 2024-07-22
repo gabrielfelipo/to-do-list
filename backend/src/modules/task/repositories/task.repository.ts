@@ -14,7 +14,7 @@ export abstract class TaskRepository {
 
   abstract findAllByMemberId(memberId: string): Promise<Task[]>
 
-  abstract update(task: SetRequired<Except<Partial<Task>, 'member'>, 'id' | 'memberId'>): Promise<Task>
+  abstract update(task: SetRequired<Except<Partial<Task>, 'member'>, 'id'>): Promise<Task>
 
   abstract delete(id: string): Promise<Task>
 }
