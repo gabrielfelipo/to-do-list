@@ -16,9 +16,7 @@ export class UpdateTaskUseCase implements IUseCase {
 
   async execute(payload: UpdateTaskDto): UpdateTaskResponse {
 
-    console.log('teste')
     const task = await this.taskRepository.findById(payload.id)
-    console.log(task)
     if (!task) return left(new NoneElementError('Unfounded task'))
 
     const updatedTask = await this.taskRepository.update({
