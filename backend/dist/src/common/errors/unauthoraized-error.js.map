@@ -1,0 +1,1 @@
+{"version":3,"file":"unauthoraized-error.js","sourceRoot":"","sources":["../../../../src/common/errors/unauthoraized-error.ts"],"names":[],"mappings":";;;AAAA,wBAA2C;AAE3C,MAAa,iBAAiB;IAK5B,YAAY,OAAgB;QAJ5B,UAAK,GAAG,oBAAoB,CAAA;QAC5B,SAAI,GAAG,aAAU,CAAC,kBAAkB,CAAA;QAIlC,IAAI,CAAC,QAAQ,GAAG,EAAE,OAAO,EAAE,OAAO,IAAI,qBAAqB,EAAE,CAAA;IAC/D,CAAC;CACF;AARD,8CAQC"}
