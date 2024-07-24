@@ -1,12 +1,23 @@
-import { Route, Routes } from 'react-router-dom'
+import { Outlet, Route, Routes } from 'react-router-dom'
 
 import { Register } from './pages/Register'
+import { Login } from './pages/Login'
+import { HomeWrapper } from '~/routes/HomeWrapper'
 
 export const HomeRoutes = () => {
   return (
     <Routes>
-      <Route element={<Register/>} path="/register" />
-      {/* <Route element={<ListSchedules />} path="/schedules/" /> */}
+      <Route
+      element={
+        <HomeWrapper>
+        <Outlet />
+      </HomeWrapper>
+      }>
+       
+
+      <Route element={<Register />} path="/register" />
+      <Route element={<Login />} path="/login" />
+      </Route>
     </Routes>
   )
 }
