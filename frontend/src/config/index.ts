@@ -5,7 +5,7 @@ const env = z
     VITE_API_URL: z.string().optional().default('http://localhost:3000'),
     VITE_PUBLIC_URL: z.string().optional().default('http://localhost:5174/'),
   })
-  .transform((original) => ({
+  .transform(original => ({
     apiUrl: original.VITE_API_URL,
     publicUrl: original.VITE_PUBLIC_URL,
   }))

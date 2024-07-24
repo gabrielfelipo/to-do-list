@@ -10,8 +10,7 @@ export function lazyImport<
 >(factory: () => Promise<I>, name: K): I {
   return Object.create({
     [name]: React.lazy(() =>
-      factory().then((module) => ({ default: module[name] }))
+      factory().then(module => ({ default: module[name] }))
     ),
   })
 }
-

@@ -1,12 +1,16 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 
 import { CreateMemberDto, createMemberSchema } from './dtos/create-member'
 import { ZodValidationPipe } from 'src/utils/validation-pipe'
 import { CreateMemberUseCase } from './use-cases/create-member'
+import { Member } from './entities/Member'
+import { unknown } from 'zod'
+import { GetMemberUseCase } from './use-cases/get-member'
+import { CurrentUser } from '../auth/decorators/current-user.decorator'
 
 @Controller('members')
 export class MemberController {
-  constructor(private createMemberUseCase: CreateMemberUseCase) {}
+  constructor(private createMemberUseCase: CreateMemberUseCase, private getMemberUseCase: GetMemberUseCase) {}
 
   @Post()
   async createMember(
@@ -15,4 +19,12 @@ export class MemberController {
   ) {
     return await this.createMemberUseCase.execute(createMemberDto)
   }
+
+  @Get('/user')
+  async getMember(
+    @CurrentUser() currentUser: Member
+  ) {
+    return await this.getMemberUseCase.execute(undefined ,currentUser.id)
+  }
+
 }

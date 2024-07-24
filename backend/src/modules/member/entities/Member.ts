@@ -4,7 +4,13 @@ type MemberProps = {
   name: string
   email: string
   password: string
-  // tasks?: Task[]
+}
+
+export class MemberEntity {
+  id?: string
+  name: string
+  email: string
+  password: string
 }
 
 export class Member extends Entity<MemberProps> {

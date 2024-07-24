@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { AnimatePresence } from 'framer-motion'
-import { ErrorBoundary } from 'react-error-boundary'
-import { ToastContainer } from 'react-toastify'
-import { NextUIProvider } from '@nextui-org/react'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { ErrorBoundary } from 'react-error-boundary'
+import { NextUIProvider } from '@nextui-org/react'
+import { ToastContainer } from 'react-toastify'
+import { AnimatePresence } from 'framer-motion'
 import NiceModal from '@ebay/nice-modal-react'
+import * as React from 'react'
 
-import { queryClient } from '~/lib/react-query'
 import 'react-toastify/dist/ReactToastify.min.css'
+import { queryClient } from '~/lib/react-query'
 
 const ErrorFallback = () => {
   return (

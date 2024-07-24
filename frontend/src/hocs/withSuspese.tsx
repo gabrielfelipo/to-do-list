@@ -1,5 +1,5 @@
-import React from 'react'
 import { PageLoading } from '../components/PageLoading'
+import React from 'react'
 
 /* eslint-disable react/display-name */
 export const withSuspense = (
