@@ -1,6 +1,6 @@
 import { ImageProps, Image as NUIImage } from '@nextui-org/react'
-import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
+import { motion } from 'framer-motion'
 
 const Image = (props: ImageProps) => {
   return (

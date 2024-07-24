@@ -2,9 +2,9 @@ import {
   Button as NUIButton,
   ButtonProps as NUIButtonProps,
 } from '@nextui-org/react'
-import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import { useState } from 'react'
 
 interface ButtonProps extends NUIButtonProps {
   disabledSmartLoading?: boolean
@@ -34,7 +34,7 @@ const Button = (props: ButtonProps) => {
       isLoading={isLoading}
       color="primary"
       {...props}
-      onClick={async (event) => {
+      onClick={async event => {
         if (props.onClick) {
           setIsClicking(true)
           await props.onClick(event)

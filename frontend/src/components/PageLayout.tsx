@@ -1,6 +1,6 @@
-import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
 
 interface IPageLayout {
   children: ReactNode
