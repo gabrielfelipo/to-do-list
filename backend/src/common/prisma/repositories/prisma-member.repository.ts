@@ -29,7 +29,13 @@ export class PrismaMemberRepository extends MemberRepository {
     return MemberMapper.toDomain(member)
   }
 
-  findByEmail(email: string): Promise<Member | null | undefined> {
-    throw new Error('Method not implemented.')
+  async findByEmail(email: string): Promise<Member | null | undefined> {
+    const member = await this.prisma.member.findUnique({
+      where: { email },
+    })
+
+    if (!member) return null
+
+    return MemberMapper.toDomain(member)
   }
 }

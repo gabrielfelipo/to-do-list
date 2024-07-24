@@ -13,20 +13,22 @@ const getAuthHeader = () => {
 }
 
 axiosInstance.interceptors.request.use(
-  (config) => {
+  config => {
     config.headers.Authorization = getAuthHeader()
     return config
   },
-  (error) => Promise.reject(error),
+  error => Promise.reject(error)
 )
 
-export function setAuthorizationToken(token: string, refreshToken: string) {
+export function setAuthorizationToken(token: string) {
   localStorage.setItem('token', token)
 }
 
 export type IApiResponse<T> = {
-  message: string
-  response: T
+  value: {
+    message: string
+    response: T
+  }
 }
 
 export type RawApiError = AxiosError<{
