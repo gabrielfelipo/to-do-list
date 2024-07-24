@@ -3,7 +3,7 @@ import { MASK_TYPE, MaskType } from './types'
 export const maskPlugin = (
   onChange: (...event: unknown[]) => void,
   mask?: string,
-  maskType?: MaskType,
+  maskType?: MaskType
 ) => {
   if (!(mask || maskType)) return onChange
 
@@ -21,14 +21,17 @@ const maskFn = ({
   mask,
   value,
   maskType,
-}: { mask?: string; value: string; maskType?: MaskType }) => {
+}: {
+  mask?: string
+  value: string
+  maskType?: MaskType
+}) => {
   const validCharsRegex = maskType ? MASK_TYPE[maskType] : /./
 
   const valueWithoutMask = value
     .split('')
     .filter(
-      (char) =>
-        validCharsRegex.test(char) && (mask ? !mask.includes(char) : true),
+      char => validCharsRegex.test(char) && (mask ? !mask.includes(char) : true)
     )
     .join('')
 

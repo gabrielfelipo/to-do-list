@@ -45,7 +45,7 @@ export const Select = (props: SelectProps) => {
           {...props}
         >
           {props?.options
-            ? props.options.map((option) => (
+            ? props.options.map(option => (
                 <SelectItem
                   key={option.value}
                   className="text-black"

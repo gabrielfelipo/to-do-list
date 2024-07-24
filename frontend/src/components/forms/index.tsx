@@ -1,5 +1,3 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { memo } from 'react'
 import {
   FormProvider,
   SubmitHandler,
@@ -8,13 +6,16 @@ import {
   useForm,
   useFormContext,
 } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Except } from 'type-fest'
+import { memo } from 'react'
 import { z } from 'zod'
 
-import { Input } from './Input'
+import { TextInput } from './TextInput'
 import { Select } from './Select'
+import { Input } from './Input'
 
-const components = { Input, Select }
+const components = { Input, Select, TextInput }
 
 interface UseZodFormProps<S extends z.ZodSchema>
   extends Exclude<UseFormProps<z.infer<S>>, 'resolver'> {
@@ -49,6 +50,7 @@ type ZodFormProps<S extends z.ZodSchema> = {
     form: UseFormReturn<z.TypeOf<S>, unknown, undefined>
     Input: FormComponent<S, typeof Input>
     Select: FormComponent<S, typeof Select>
+    TextInput: FormComponent<S, typeof TextInput>
   }) => JSX.Element
   className?: string
   action?: string

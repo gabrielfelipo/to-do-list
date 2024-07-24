@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { InputProps } from './types'
+import { useState } from 'react'
 
 export const PasswordPlugin = (props: InputProps) => {
   const [contentIsVisible, setContentIsVisible] = useState(false)
