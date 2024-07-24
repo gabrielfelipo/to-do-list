@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common'
 
 import { createTaskSchema } from './dtos/create-task'
 import { ZodValidationPipe } from 'src/utils/validation-pipe'
@@ -14,6 +14,8 @@ import { FinalizeTaskDto, finalizeTaskSchema } from './dtos/finalize-task'
 import { FinalizeTaskUseCase } from './use-cases/finalize-task'
 import { DeleteTaskUseCase } from './use-cases/delete-task'
 import { AllTasksUseCase } from './use-cases/all-tasks'
+import { CurrentUser } from '../auth/decorators/current-user.decorator'
+import { Member } from '../member/entities/Member'
 
 @Controller('tasks')
 export class TaskController {
@@ -30,9 +32,10 @@ export class TaskController {
   @Post()
   async createTask(
     @Body(new ZodValidationPipe(createTaskSchema))
-    createTaskDto: CreateTaskDto
+    createTaskDto: CreateTaskDto,
+    @CurrentUser() currentUser: Member
   ) {
-    return await this.registerTaskUseCase.execute(createTaskDto, '5728be95-81cb-47cc-b829-e9d77a833ebd')
+    return await this.registerTaskUseCase.execute(createTaskDto, currentUser.id)
   }
 
   @Patch()
@@ -60,20 +63,23 @@ export class TaskController {
   }
 
   @Get("/all")
-  async getTasks() {
+  async getTasks(
+  @CurrentUser() currentUser: Member
+  ){
     return await this.allTasks.execute()
   }
 
   @Get("/member")
   async memberTasks(
-    _memberTasksDto: unknown
+    _memberTasksDto: unknown,
+    @CurrentUser() currentUser: Member
   ) {
-    return await this.memberTasksUseCase.execute(_memberTasksDto, '5728be95-81cb-47cc-b829-e9d77a833ebd')
+    return await this.memberTasksUseCase.execute(_memberTasksDto, currentUser)
   }
 
   @Delete()
   async deleteTask(
-    @Param(new ZodValidationPipe(deleteTaskSchema))
+    @Body(new ZodValidationPipe(deleteTaskSchema))
     deleteTaskDto: DeleteTaskDto
   ) {
     return await this.deleteTaskUseCase.execute(deleteTaskDto)
