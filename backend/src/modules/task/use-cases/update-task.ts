@@ -10,18 +10,15 @@ type UpdateTaskResponse = AsyncEither<DomainError, IUseCaseResponse>
 
 @Injectable()
 export class UpdateTaskUseCase implements IUseCase {
-  constructor(
-    private readonly taskRepository: TaskRepository
-  ) {}
+  constructor(private readonly taskRepository: TaskRepository) {}
 
   async execute(payload: UpdateTaskDto): UpdateTaskResponse {
-
     const task = await this.taskRepository.findById(payload.id)
     if (!task) return left(new NoneElementError('Unfounded task'))
 
     const updatedTask = await this.taskRepository.update({
-        ...payload, 
-        id: task.id
+      ...payload,
+      id: task.id,
     })
 
     return right({

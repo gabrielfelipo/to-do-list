@@ -1,17 +1,17 @@
-import { ReactNode } from "react"
-import { Navigate } from "react-router-dom"
-import { useMember } from "~/hooks/useMember"
+import { useMember } from '~/hooks/useMember'
+import { Navigate } from 'react-router-dom'
+import { ReactNode } from 'react'
 
 type AuthWrapperProps = {
-    children: ReactNode
+  children: ReactNode
 }
 
-export const AuthWrapper = ({children}: AuthWrapperProps) => {
-    const { data: member, isFetched } = useMember()
+export const AuthWrapper = ({ children }: AuthWrapperProps) => {
+  const { data: member, isFetched } = useMember()
 
-    if (!member && isFetched) return <Navigate to="/login" />
+  if (!member && isFetched) return <Navigate to="/login" />
 
-    if (!member) return null
+  if (!member) return null
 
-    return children
+  return children
 }

@@ -17,16 +17,18 @@ export class RegisterTaskUseCase implements IUseCase {
     private memberRepository: MemberRepository
   ) {}
 
-  async execute(payload: CreateTaskDto, memberId: string): RegisterTaskResponse {
-
-    const member  = await this.memberRepository.findById(memberId)
+  async execute(
+    payload: CreateTaskDto,
+    memberId: string
+  ): RegisterTaskResponse {
+    const member = await this.memberRepository.findById(memberId)
 
     if (!member) return left(new UnauthorizedError('Unauthorized member'))
 
     const rawTask = Task.create({
-        ...payload,
-        memberId: member.id,
-        finalized: false,
+      ...payload,
+      memberId: member.id,
+      finalized: false,
     })
 
     const task = await this.taskRepository.create(rawTask)

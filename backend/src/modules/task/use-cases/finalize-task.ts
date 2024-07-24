@@ -17,25 +17,24 @@ export class FinalizeTaskUseCase implements IUseCase {
   constructor(private readonly taskRepository: TaskRepository) {}
 
   async execute(payload: FinalizeTaskDto): FinalizeTaskResponse {
-    const { id: taskId , finalized: isFinalized} = payload
+    const { id: taskId, finalized: isFinalized } = payload
 
     const task = await this.taskRepository.findById(taskId)
     if (!task) return left(new NoneElementError('Unfounded task'))
-    
+
     let finalizedTask: Task
 
     if (isFinalized) {
       finalizedTask = await this.taskRepository.update({
         id: task.id,
         finalized: true,
-        endDate: dayjs().toDate()
+        endDate: dayjs().toDate(),
       })
-    }
-    else {
+    } else {
       finalizedTask = await this.taskRepository.update({
         id: task.id,
         finalized: false,
-        endDate: undefined
+        endDate: undefined,
       })
     }
 

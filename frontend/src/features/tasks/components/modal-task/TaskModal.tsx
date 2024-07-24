@@ -1,19 +1,14 @@
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-} from '~/components/Modal'
+import { Modal, ModalBody, ModalContent, ModalHeader } from '~/components/Modal'
+import { useFinalizeTask } from '../../api/finalizeTask'
 import { useCreateTask } from '../../api/createTask'
+import { useUpdateTask } from '../../api/updateTask'
+import { useListTasks } from '../../api/listTasks'
 import { Button } from '~/components/Button'
 import { ZodForm } from '~/components/forms'
 import { toast } from 'react-toastify'
 import validator from 'validator'
 import { Task } from '~/types'
 import { z } from 'zod'
-import { useListTasks } from '../../api/listTasks'
-import { useUpdateTask } from '../../api/updateTask'
-import { useFinalizeTask } from '../../api/finalizeTask'
 
 type TaskModalProps = {
   task?: Task
@@ -45,22 +40,21 @@ export const TaskModal = ({ task, onClose, isOpen }: TaskModalProps) => {
     try {
       if (task) {
         const updateData = {
-            id: task.id,
-            name,
-            description,
-            priority,
-            finalized: Boolean(finalized),
-          }
+          id: task.id,
+          name,
+          description,
+          priority,
+          finalized: Boolean(finalized),
+        }
 
         await updateTask.mutateAsync(updateData)
 
-        if (task.finalized == false && finalized == '1'){
-            await finalizeTask.mutateAsync({id: task.id, finalized: true})
+        if (task.finalized == false && finalized == '1') {
+          await finalizeTask.mutateAsync({ id: task.id, finalized: true })
         }
-        if (task.finalized == true && finalized == '0'){
-            await finalizeTask.mutateAsync({id: task.id, finalized: false})
+        if (task.finalized == true && finalized == '0') {
+          await finalizeTask.mutateAsync({ id: task.id, finalized: false })
         }
-
       } else {
         const createData = {
           name,

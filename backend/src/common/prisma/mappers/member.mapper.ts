@@ -12,11 +12,14 @@ export class MemberMapper {
   ): Member {
     const raw = nullsToUndefined(raw_)
 
-    return Member.create({ 
-      name: raw.name, 
-      email: raw.email, 
-      password: raw.password 
-    }, raw.id)
+    return Member.create(
+      {
+        name: raw.name,
+        email: raw.email,
+        password: raw.password,
+      },
+      raw.id
+    )
   }
 
   static toPersistence(member: Member): Prisma.MemberCreateInput {
@@ -24,7 +27,7 @@ export class MemberMapper {
       id: member.id,
       name: member.name,
       email: member.email,
-      password: member.password
+      password: member.password,
     }
   }
 }

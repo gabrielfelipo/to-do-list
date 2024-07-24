@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common'
 
 import { createTaskSchema } from './dtos/create-task'
 import { ZodValidationPipe } from 'src/utils/validation-pipe'
@@ -20,7 +30,7 @@ import { Member } from '../member/entities/Member'
 @Controller('tasks')
 export class TaskController {
   constructor(
-    private registerTaskUseCase: RegisterTaskUseCase, 
+    private registerTaskUseCase: RegisterTaskUseCase,
     private updateTaskUseCase: UpdateTaskUseCase,
     private getTaskUseCase: GetTaskUseCase,
     private memberTasksUseCase: MemberTasksUseCase,
@@ -62,14 +72,12 @@ export class TaskController {
     return await this.getTaskUseCase.execute(getTaskDto)
   }
 
-  @Get("/all")
-  async getTasks(
-  @CurrentUser() currentUser: Member
-  ){
+  @Get('/all')
+  async getTasks(@CurrentUser() currentUser: Member) {
     return await this.allTasks.execute()
   }
 
-  @Get("/member")
+  @Get('/member')
   async memberTasks(
     _memberTasksDto: unknown,
     @CurrentUser() currentUser: Member
@@ -84,5 +92,4 @@ export class TaskController {
   ) {
     return await this.deleteTaskUseCase.execute(deleteTaskDto)
   }
-
 }

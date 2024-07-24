@@ -19,10 +19,10 @@ import { VerticalDotsIcon } from './verticalDotsIcon'
 import { TaskModal } from '../modal-task/TaskModal'
 import { useListTasks } from '../../api/listTasks'
 import { Priority, Task, Member } from '~/types'
+import { useMember } from '~/hooks/useMember'
 import { Button } from '~/components/Button'
 import React, { useState } from 'react'
 import dayjs from 'dayjs'
-import { useMember } from '~/hooks/useMember'
 
 const priorityColorMap: Record<Priority, ChipProps['color']> = {
   Alta: 'danger',

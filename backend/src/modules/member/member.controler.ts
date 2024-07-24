@@ -7,11 +7,16 @@ import { Member } from './entities/Member'
 import { unknown } from 'zod'
 import { GetMemberUseCase } from './use-cases/get-member'
 import { CurrentUser } from '../auth/decorators/current-user.decorator'
+import { IsPublic } from '../auth/decorators/is-public.decorator'
 
 @Controller('members')
 export class MemberController {
-  constructor(private createMemberUseCase: CreateMemberUseCase, private getMemberUseCase: GetMemberUseCase) {}
+  constructor(
+    private createMemberUseCase: CreateMemberUseCase,
+    private getMemberUseCase: GetMemberUseCase
+  ) {}
 
+  @IsPublic()
   @Post()
   async createMember(
     @Body(new ZodValidationPipe(createMemberSchema))
@@ -21,10 +26,7 @@ export class MemberController {
   }
 
   @Get('/user')
-  async getMember(
-    @CurrentUser() currentUser: Member
-  ) {
-    return await this.getMemberUseCase.execute(undefined ,currentUser.id)
+  async getMember(@CurrentUser() currentUser: Member) {
+    return await this.getMemberUseCase.execute(undefined, currentUser.id)
   }
-
 }

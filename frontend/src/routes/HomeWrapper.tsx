@@ -1,16 +1,16 @@
-import { ReactNode } from "react"
-import { Navigate } from "react-router-dom"
-import { useMember } from "~/hooks/useMember"
+import { useMember } from '~/hooks/useMember'
+import { Navigate } from 'react-router-dom'
+import { ReactNode } from 'react'
 
 type HomeWrapperProps = {
-    children: ReactNode
+  children: ReactNode
 }
 
-export const HomeWrapper = ({children}: HomeWrapperProps) => {
-    const { data: member } = useMember()
+export const HomeWrapper = ({ children }: HomeWrapperProps) => {
+  const { data: member } = useMember()
 
-    console.log(member)
-    if (member) return <Navigate to="/tasks" />
+  console.log(member)
+  if (member) return <Navigate to="/tasks" />
 
-    return children
+  return children
 }

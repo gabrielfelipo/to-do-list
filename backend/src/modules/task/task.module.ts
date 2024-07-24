@@ -9,18 +9,17 @@ import { GetTaskUseCase } from './use-cases/get-task'
 import { MemberTasksUseCase } from './use-cases/member-tasks'
 import { AllTasksUseCase } from './use-cases/all-tasks'
 
-
 @Module({
   imports: [PrismaModule],
   controllers: [TaskController],
   providers: [
-    RegisterTaskUseCase, 
-    UpdateTaskUseCase, 
-    DeleteTaskUseCase, 
+    RegisterTaskUseCase,
+    UpdateTaskUseCase,
+    DeleteTaskUseCase,
     FinalizeTaskUseCase,
     GetTaskUseCase,
     MemberTasksUseCase,
-    AllTasksUseCase
-  ], 
+    AllTasksUseCase,
+  ],
 })
 export class TaskModule {}

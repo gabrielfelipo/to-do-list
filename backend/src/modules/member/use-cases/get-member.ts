@@ -14,13 +14,12 @@ export class GetMemberUseCase implements IUseCase {
   constructor(private memberRepository: MemberRepository) {}
 
   async execute(_payload: unknown, memberId: string): GetMemberResponse {
-
     const member = await this.memberRepository.findById(memberId)
     if (!member) throw left(new UnauthorizedError())
 
     return right({
       message: 'Member retrivied successfuly',
-      response: { member: { id: member.id, name: member.name }},
+      response: { member: { id: member.id, name: member.name } },
     })
   }
 }

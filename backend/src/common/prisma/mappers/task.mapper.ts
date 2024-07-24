@@ -13,16 +13,18 @@ export class TaskMapper {
   ): Task {
     const raw = nullsToUndefined(raw_)
 
-    return Task.create({
+    return Task.create(
+      {
         name: raw.name,
         description: raw.description || '',
         priority: raw.priority,
         memberId: raw.memberId,
         member: raw.member ? MemberMapper.toDomain(raw.member) : undefined,
         finalized: raw.finalized,
-        endDate: raw.endDate
-    }, 
-    raw.id)
+        endDate: raw.endDate,
+      },
+      raw.id
+    )
   }
 
   static toPersistence(task: Task): Prisma.TaskUncheckedCreateInput {
@@ -31,7 +33,7 @@ export class TaskMapper {
       name: task.name,
       description: task.description,
       priority: task.priority,
-      memberId: task.memberId 
+      memberId: task.memberId,
     }
   }
 }

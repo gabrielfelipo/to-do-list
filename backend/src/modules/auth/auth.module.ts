@@ -1,12 +1,12 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { JwtStrategy } from './strategies/jwt.strategy';
-import { LocalStrategy } from './strategies/local.strategy';
-import { LoginValidationMiddleware } from './middlewares/login-validation.middleware';
-import { PrismaModule } from 'src/common/prisma/prisma.module';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
+import { JwtModule } from '@nestjs/jwt'
+import { PassportModule } from '@nestjs/passport'
+import { AuthController } from './auth.controller'
+import { AuthService } from './auth.service'
+import { JwtStrategy } from './strategies/jwt.strategy'
+import { LocalStrategy } from './strategies/local.strategy'
+import { LoginValidationMiddleware } from './middlewares/login-validation.middleware'
+import { PrismaModule } from 'src/common/prisma/prisma.module'
 
 @Module({
   imports: [
@@ -22,6 +22,6 @@ import { PrismaModule } from 'src/common/prisma/prisma.module';
 })
 export class AuthModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoginValidationMiddleware).forRoutes('/auth/login');
+    consumer.apply(LoginValidationMiddleware).forRoutes('/auth/login')
   }
 }

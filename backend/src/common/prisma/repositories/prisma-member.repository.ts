@@ -1,4 +1,3 @@
-
 import { PrismaService } from '../prisma.service'
 import { Injectable } from '@nestjs/common'
 import { Member } from 'src/modules/member/entities/Member'

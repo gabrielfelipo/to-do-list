@@ -15,7 +15,6 @@ export class CreateMemberUseCase implements IUseCase {
   constructor(private memberRepository: MemberRepository) {}
 
   async execute(payload: CreateMemberDto): CreateMemberResponse {
-
     const member = Member.create({
       name: payload.name,
       email: payload.email,
@@ -23,7 +22,6 @@ export class CreateMemberUseCase implements IUseCase {
     })
 
     await this.memberRepository.create(member)
-
 
     return right({
       message: 'Member created successfuly',
