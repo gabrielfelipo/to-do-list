@@ -1,10 +1,8 @@
 import { Controller, useFormContext } from 'react-hook-form'
-import { Input as NUIInput } from '@nextui-org/react'
-import { PasswordPlugin } from './passwordPlugin'
-import { maskPlugin } from './maskPlugin'
-import { InputProps } from './types'
+import { Textarea as NUITextArea } from '@nextui-org/react'
+import { TextInputProps } from './types'
 
-export const Input = ({ mask, maskType, ...props }: InputProps) => {
+export const TextInput = ({ ...props }: TextInputProps) => {
   const form = useFormContext()
 
   return (
@@ -12,7 +10,7 @@ export const Input = ({ mask, maskType, ...props }: InputProps) => {
       control={form.control}
       name={props.name}
       render={({ field, fieldState }) => (
-        <NUIInput
+        <NUITextArea
           required={!props.isOptional}
           isInvalid={!!fieldState.error}
           errorMessage={fieldState.error?.message}
@@ -25,8 +23,7 @@ export const Input = ({ mask, maskType, ...props }: InputProps) => {
           {...props}
           {...field}
           value={field.value ?? ''}
-          {...PasswordPlugin(props)}
-          onChange={maskPlugin(field.onChange, mask, maskType)}
+          onChange={field.onChange}
         />
       )}
     />

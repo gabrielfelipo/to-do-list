@@ -1,4 +1,3 @@
-import NiceModal, { useModal } from '@ebay/nice-modal-react'
 import {
   Modal,
   ModalBody,
@@ -6,6 +5,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from './Modal'
+import NiceModal, { useModal } from '@ebay/nice-modal-react'
 import { Button } from './Button'
 import { Icon } from './Icon'
 
