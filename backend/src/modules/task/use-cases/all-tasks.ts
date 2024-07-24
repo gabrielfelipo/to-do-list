@@ -19,7 +19,7 @@ export class AllTasksUseCase implements IUseCase {
 
     return right({
       message: 'Task retrivied successfuly',
-      response: { task: tasks.map((task) => task._serialized) },
+      response: { tasks: tasks.map((task) => task._serialized) },
     })
   }
 }
